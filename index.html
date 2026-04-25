@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Byron Creations</title>
+
+  <!-- Fuentes de apoyo (Google Fonts) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+  <!-- Estilos y tokens de diseño -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- React + Babel (CDN) -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <div id="root"></div>
+
+  <!-- Componentes JSX separados -->
+  <script type="text/babel" src="js/Header.jsx"></script>
+  <script type="text/babel" src="js/HeroSection.jsx"></script>
+  <script type="text/babel" src="js/AlbumGrid.jsx"></script>
+  <script type="text/babel" src="js/ActivityStrip.jsx"></script>
+  <script type="text/babel" src="js/Footer.jsx"></script>
+
+  <!-- App principal -->
+  <script type="text/babel">
+    const ContactPage = ({ onNavigate }) => {
+      const [sent, setSent] = React.useState(false);
+      return (
+        <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '100px 40px 80px' }}>
+          <div style={{ maxWidth: 540, width: '100%' }}>
+            <div style={{ fontFamily: 'var(--bc-font-body)', fontSize: 11, fontWeight: 500, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--bc-accent)', marginBottom: 12 }}>
+              Contacto
+            </div>
+            <h1 style={{ fontFamily: 'var(--bc-font-display)', fontSize: 52, fontWeight: 300, letterSpacing: '0.04em', color: 'var(--bc-text-primary)', marginBottom: 32, lineHeight: 1.05 }}>
+              Hablemos
+            </h1>
+            {sent ? (
+              <div style={{ fontFamily: 'var(--bc-font-display)', fontSize: 22, fontWeight: 300, color: 'var(--bc-accent)', lineHeight: 1.6 }}>
+                Mensaje recibido. Me pondré en contacto contigo pronto.
+              </div>
+            ) : (
+              <form onSubmit={e => { e.preventDefault(); setSent(true); }} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                {[['Nombre', 'text'], ['Email', 'email'], ['Mensaje', 'textarea']].map(([label, type]) => (
+                  <div key={label}>
+                    <label style={{ fontFamily: 'var(--bc-font-body)', fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--bc-text-tertiary)', display: 'block', marginBottom: 6 }}>
+                      {label}
+                    </label>
+                    {type === 'textarea' ? (
+                      <textarea rows={5} style={{ width: '100%', background: 'var(--bc-glass-bg)', border: '1px solid var(--bc-border)', borderRadius: 'var(--bc-radius-md)', padding: '12px 16px', color: 'var(--bc-text-primary)', fontFamily: 'var(--bc-font-body)', fontSize: 14, resize: 'vertical', outline: 'none' }} />
+                    ) : (
+                      <input type={type} style={{ width: '100%', background: 'var(--bc-glass-bg)', border: '1px solid var(--bc-border)', borderRadius: 'var(--bc-radius-md)', padding: '12px 16px', color: 'var(--bc-text-primary)', fontFamily: 'var(--bc-font-body)', fontSize: 14, outline: 'none' }} />
+                    )}
+                  </div>
+                ))}
+                <button type="submit" style={{ alignSelf: 'flex-start', fontFamily: 'var(--bc-font-body)', fontSize: 11, fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', background: 'var(--bc-accent)', color: 'var(--bc-text-inverse)', padding: '13px 28px', borderRadius: 'var(--bc-radius-md)', border: 'none', cursor: 'pointer', marginTop: 8 }}>
+                  Enviar mensaje
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      );
+    };
+
+    const App = () => {
+      const [page, setPage] = React.useState('home');
+      const containerRef = React.useRef(null);
+
+      const navigate = (p) => {
+        setPage(p);
+        if (containerRef.current) containerRef.current.scrollTop = 0;
+      };
+
+      const renderPage = () => {
+        switch (page) {
+          case 'home':
+            return (
+              <>
+                <HeroSection onNavigate={navigate} />
+                <AlbumGrid />
+                <ActivityStrip />
+                <Footer onNavigate={navigate} />
+              </>
+            );
+          case 'portfolio':
+            return (
+              <>
+                <div style={{ height: 80 }} />
+                <AlbumGrid />
+                <Footer onNavigate={navigate} />
+              </>
+            );
+          case 'actividad':
+          case 'galeria':
+            return (
+              <>
+                <div style={{ height: 80 }} />
+                <ActivityStrip />
+                <Footer onNavigate={navigate} />
+              </>
+            );
+          case 'contacto':
+            return (
+              <>
+                <ContactPage onNavigate={navigate} />
+                <Footer onNavigate={navigate} />
+              </>
+            );
+          default:
+            return null;
+        }
+      };
+
+      return (
+        <div ref={containerRef} className="bc-scroll-container" style={{ height: '100vh', overflowY: 'auto', overflowX: 'hidden' }}>
+          <Header activePage={page} onNavigate={navigate} />
+          {renderPage()}
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+
+</body>
+</html>

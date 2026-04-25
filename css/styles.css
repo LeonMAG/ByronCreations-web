@@ -1,0 +1,141 @@
+/* ============================================================
+   BYRON CREATIONS — Global Styles & Design Tokens
+   css/styles.css
+   ============================================================ */
+
+/* --- Fuentes locales --- */
+@font-face {
+  font-family: 'Raleway';
+  src: url('../fonts/Raleway-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Raleway';
+  src: url('../fonts/Raleway-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
+:root {
+  /* Backgrounds — paleta bosque y tierra */
+  --bc-bg-base:              #070d09;
+  --bc-bg-raised:            #0f1a13;
+  --bc-bg-elevated:          #172212;
+  --bc-bg-moss:              #1e2e1a;
+  --bc-bg-wood:              #1c1208;
+  --bc-bg-slate:             #0d1520;
+  --bc-bg-overlay:           rgba(0, 0, 0, 0.55);
+
+  /* Paleta tierra (solo para fondos) */
+  --bc-earth-green:          #2d4a28;
+  --bc-earth-green-mid:      #3d6635;
+  --bc-earth-yellow:         #b89a30;
+  --bc-earth-brown:          #7a5230;
+  --bc-earth-blue:           #2a4a5e;
+
+  /* Texto — escala de grises pura */
+  --bc-text-primary:         #F2F2F2;
+  --bc-text-secondary:       #8A8A8A;
+  --bc-text-tertiary:        #525252;
+  --bc-text-inverse:         #0a0a0a;
+
+  /* Acento (amarillo terroso — UI highlights) */
+  --bc-accent:               #b89a30;
+  --bc-accent-light:         #d4b84a;
+  --bc-accent-dim:           rgba(184, 154, 48, 0.15);
+
+  /* Glassmorphism */
+  --bc-glass-bg:             rgba(255, 255, 255, 0.05);
+  --bc-glass-bg-hover:       rgba(255, 255, 255, 0.09);
+  --bc-glass-border:         rgba(255, 255, 255, 0.09);
+
+  /* Bordes */
+  --bc-border:               rgba(255, 255, 255, 0.09);
+  --bc-border-strong:        rgba(255, 255, 255, 0.18);
+  --bc-border-accent:        rgba(184, 154, 48, 0.35);
+
+  /* Sombras */
+  --bc-shadow-sm:            0 2px 8px rgba(0, 0, 0, 0.50);
+  --bc-shadow-md:            0 8px 32px rgba(0, 0, 0, 0.65);
+  --bc-shadow-lg:            0 24px 64px rgba(0, 0, 0, 0.80);
+
+  /* Tipografía */
+  --bc-font-display:         'Raleway', sans-serif;
+  --bc-font-body:            'DM Sans', sans-serif;
+  --bc-font-mono:            'DM Mono', monospace;
+
+  /* Espaciado (base 8px) */
+  --bc-space-1:  4px;
+  --bc-space-2:  8px;
+  --bc-space-3:  12px;
+  --bc-space-4:  16px;
+  --bc-space-5:  24px;
+  --bc-space-6:  32px;
+  --bc-space-7:  48px;
+  --bc-space-8:  64px;
+  --bc-space-9:  80px;
+  --bc-space-10: 120px;
+
+  /* Radios */
+  --bc-radius-sm:   4px;
+  --bc-radius-md:   6px;
+  --bc-radius-lg:   8px;
+  --bc-radius-pill: 100px;
+
+  /* Animación */
+  --bc-ease-out:    cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --bc-ease-panel:  cubic-bezier(0.4, 0.0, 0.2, 1);
+  --bc-dur-fast:    150ms;
+  --bc-dur-base:    300ms;
+  --bc-dur-slow:    700ms;
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--bc-bg-base);
+  color: var(--bc-text-primary);
+  font-family: var(--bc-font-body);
+  overflow-x: hidden;
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bc-bg-base); }
+::-webkit-scrollbar-thumb { background: var(--bc-accent-dim); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(184,154,48,0.4); }
+
+#root { min-height: 100vh; }
+
+/* ============================================================
+   UTILIDADES
+   ============================================================ */
+.bc-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity var(--bc-dur-slow) var(--bc-ease-out),
+    transform var(--bc-dur-slow) var(--bc-ease-out);
+}
+.bc-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

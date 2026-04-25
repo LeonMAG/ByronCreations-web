@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Byron Creations</title>
+<style>
+@font-face {
+  font-family: 'Raleway';
+  src: url('../../fonts/Raleway-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: 'Raleway';
+  src: url('../../fonts/Raleway-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900; font-style: italic; font-display: swap;
+}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 16px; }
+  body {
+    background: #070d09;
+    color: #F2F2F2;
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #070d09; }
+  ::-webkit-scrollbar-thumb { background: rgba(184,154,48,0.3); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(184,154,48,0.5); }
+
+  #root { min-height: 100vh; }
+</style>
+</head>
+<body>
+
+<template id="__bundler_thumbnail" data-bg-color="#070d09">
+  <svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg">
+    <!-- Nav bar -->
+    <rect x="0" y="0" width="400" height="28" fill="#0f1a13"/>
+    <rect x="20" y="10" width="60" height="8" rx="2" fill="#b89a30" opacity="0.7"/>
+    <rect x="280" y="10" width="30" height="8" rx="2" fill="rgba(255,255,255,0.15)"/>
+    <rect x="318" y="10" width="30" height="8" rx="2" fill="rgba(255,255,255,0.15)"/>
+    <rect x="356" y="10" width="30" height="8" rx="2" fill="#b89a30" opacity="0.5"/>
+    <!-- Hero bg -->
+    <rect x="0" y="28" width="400" height="140" fill="#070d09"/>
+    <ellipse cx="220" cy="98" rx="180" ry="80" fill="rgba(184,154,48,0.05)"/>
+    <!-- Hero text blocks -->
+    <rect x="120" y="52" width="160" height="22" rx="2" fill="rgba(242,242,242,0.85)"/>
+    <rect x="100" y="80" width="200" height="22" rx="2" fill="#b89a30" opacity="0.75"/>
+    <rect x="140" y="112" width="120" height="10" rx="2" fill="rgba(255,255,255,0.2)"/>
+    <!-- CTA buttons -->
+    <rect x="130" y="132" width="56" height="18" rx="3" fill="#b89a30"/>
+    <rect x="194" y="132" width="56" height="18" rx="3" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+    <!-- Album grid -->
+    <rect x="0" y="180" width="400" height="80" fill="#0f1a13"/>
+    <rect x="20" y="192" width="48" height="48" rx="3" fill="#1e2e1a"/>
+    <rect x="76" y="192" width="48" height="48" rx="3" fill="#1c1208"/>
+    <rect x="132" y="192" width="48" height="48" rx="3" fill="#0d1520"/>
+    <rect x="188" y="192" width="48" height="48" rx="3" fill="#2d4a28"/>
+    <rect x="244" y="192" width="48" height="48" rx="3" fill="#1e2e1a"/>
+  </svg>
+</template>
+<div id="root"></div>
+
+<script type="text/babel" src="Header.jsx"></script>
+<script type="text/babel" src="HeroSection.jsx"></script>
+<script type="text/babel" src="AlbumGrid.jsx"></script>
+<script type="text/babel" src="ActivityStrip.jsx"></script>
+<script type="text/babel" src="Footer.jsx"></script>
+
+<script type="text/babel">
+const PAGES = ['home', 'portfolio', 'actividad', 'galeria', 'contacto'];
+
+const ContactPage = ({ onNavigate }) => {
+  const [sent, setSent] = React.useState(false);
+  return (
+    <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '100px 40px 80px' }}>
+      <div style={{ maxWidth: 540, width: '100%' }}>
+        <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 500, letterSpacing: '0.16em', textTransform: 'uppercase', color: '#b89a30', marginBottom: 12 }}>Contacto</div>
+        <h1 style={{ fontFamily: "'Raleway',sans-serif", fontSize: 52, fontWeight: 300, letterSpacing: '0.04em', color: '#F2F2F2', marginBottom: 32, lineHeight: 1.05 }}>Hablemos</h1>
+        {sent ? (
+          <div style={{ fontFamily: "'Raleway',sans-serif", fontSize: 24, fontWeight: 300, color: '#b89a30', lineHeight: 1.5 }}>
+            Mensaje recibido. Me pondré en contacto contigo pronto.
+          </div>
+        ) : (
+          <form onSubmit={e => { e.preventDefault(); setSent(true); }} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {[['Nombre', 'text'], ['Email', 'email'], ['Mensaje', 'textarea']].map(([label, type]) => (
+              <div key={label}>
+                <label style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#525252', display: 'block', marginBottom: 6 }}>{label}</label>
+                {type === 'textarea' ? (
+                  <textarea rows={5} style={{ width: '100%', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)', borderRadius: 6, padding: '12px 16px', color: '#F2F2F2', fontFamily: "'DM Sans',sans-serif", fontSize: 14, resize: 'vertical', outline: 'none' }} />
+                ) : (
+                  <input type={type} style={{ width: '100%', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.10)', borderRadius: 6, padding: '12px 16px', color: '#F2F2F2', fontFamily: "'DM Sans',sans-serif", fontSize: 14, outline: 'none' }} />
+                )}
+              </div>
+            ))}
+            <button type="submit" style={{ alignSelf: 'flex-start', fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 500, letterSpacing: '0.12em', textTransform: 'uppercase', background: '#b89a30', color: '#0a0a0a', padding: '13px 28px', borderRadius: 6, border: 'none', cursor: 'pointer', marginTop: 8 }}>
+              Enviar mensaje
+            </button>
+          </form>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const App = () => {
+  const [page, setPage] = React.useState('home');
+  const containerRef = React.useRef(null);
+
+  const navigate = (p) => {
+    setPage(p);
+    if (containerRef.current) containerRef.current.scrollTop = 0;
+  };
+
+  const renderPage = () => {
+    switch (page) {
+      case 'home':
+        return (
+          <>
+            <HeroSection onNavigate={navigate} />
+            <AlbumGrid />
+            <ActivityStrip />
+            <Footer onNavigate={navigate} />
+          </>
+        );
+      case 'portfolio':
+        return (
+          <>
+            <div style={{ height: 80 }} />
+            <AlbumGrid />
+            <Footer onNavigate={navigate} />
+          </>
+        );
+      case 'actividad':
+      case 'galeria':
+        return (
+          <>
+            <div style={{ height: 80 }} />
+            <ActivityStrip />
+            <Footer onNavigate={navigate} />
+          </>
+        );
+      case 'contacto':
+        return (
+          <>
+            <ContactPage onNavigate={navigate} />
+            <Footer onNavigate={navigate} />
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div ref={containerRef} className="bc-scroll-container" style={{ height: '100vh', overflowY: 'auto', overflowX: 'hidden' }}>
+      <Header activePage={page} onNavigate={navigate} />
+      {renderPage()}
+    </div>
+  );
+};
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+</script>
+</body>
+</html>

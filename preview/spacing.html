@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bc-bg-base); padding: 24px; font-family: 'DM Mono', monospace; }
+.section-label { font-family: var(--bc-font-body, sans-serif); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #555; margin-bottom: 12px; }
+.tokens { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+.token-row { display: flex; align-items: center; gap: 12px; }
+.bar { height: 20px; background: var(--bc-accent); border-radius: 2px; opacity: 0.7; }
+.name { font-size: 10px; color: #555; min-width: 80px; }
+.val  { font-size: 10px; color: #444; }
+</style>
+</head>
+<body>
+<div class="section-label">Spacing Scale</div>
+<div class="tokens">
+  <div class="token-row"><div class="name">space-1</div><div class="bar" style="width:4px;"></div><div class="val">4px</div></div>
+  <div class="token-row"><div class="name">space-2</div><div class="bar" style="width:8px;"></div><div class="val">8px</div></div>
+  <div class="token-row"><div class="name">space-3</div><div class="bar" style="width:12px;"></div><div class="val">12px</div></div>
+  <div class="token-row"><div class="name">space-4</div><div class="bar" style="width:16px;"></div><div class="val">16px</div></div>
+  <div class="token-row"><div class="name">space-5</div><div class="bar" style="width:24px;"></div><div class="val">24px</div></div>
+  <div class="token-row"><div class="name">space-6</div><div class="bar" style="width:32px;"></div><div class="val">32px</div></div>
+  <div class="token-row"><div class="name">space-7</div><div class="bar" style="width:48px;"></div><div class="val">48px</div></div>
+  <div class="token-row"><div class="name">space-8</div><div class="bar" style="width:64px;"></div><div class="val">64px</div></div>
+  <div class="token-row"><div class="name">space-9</div><div class="bar" style="width:80px;"></div><div class="val">80px</div></div>
+  <div class="token-row"><div class="name">space-10</div><div class="bar" style="width:120px;"></div><div class="val">120px</div></div>
+</div>
+</body>
+</html>
